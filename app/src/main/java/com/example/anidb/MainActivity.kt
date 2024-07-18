@@ -1,4 +1,4 @@
-package com.example.android_template
+package com.example.anidb
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity

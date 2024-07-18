@@ -5,15 +5,14 @@ buildscript {
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
-    id 'io.gitlab.arturbosch.detekt' version '1.22.0-RC2'
 }
 
 android {
-    namespace 'com.example.android_template'
+    namespace 'com.example.anidb'
     compileSdk 33
 
     defaultConfig {
-        applicationId "com.example.android_template"
+        applicationId "com.example.anidb"
         minSdk 24
         targetSdk 33
         versionCode 1
