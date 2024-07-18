@@ -1,0 +1,20 @@
+name: checkLint
+
+on:
+  pull_request:
+    branches:
+      - develop
+
+jobs:
+  ktlint:
+    runs-on: windows-latest
+    steps:
+      - name: 'checkout'
+        uses: actions/checkout@v4
+      - name: 'setup Java'
+        uses: actions/setup-java@v3
+        with:
+         distribution: 'corretto'
+         java-version: '17'
+      - name: 'run ktlint'
+        run: ./gradlew ktlintCheck --daemon

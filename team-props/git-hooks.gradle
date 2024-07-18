@@ -1,0 +1,46 @@
+static def isLinuxMacOsOrWindows() {
+    isMac() || isLinux() || isWindows()
+}
+
+static def isLinux() {
+    System.getProperty("os.name").toLowerCase().contains("linux")
+}
+
+static def isWindows() {
+    System.getProperty("os.name").toLowerCase().contains("window")
+}
+
+static def isMac() {
+    def osName = System.getProperty("os.name").toLowerCase()
+    osName.contains("mac os") || osName.contains("macos")
+}
+
+tasks.register('copyGitHooks', Copy) {
+    description = "Copies the git hooks from team-props/git-hooks to the .git folder."
+    def path = isLinux() ? "$rootDir/team-props/git-hooks/linux" :
+            isMac() ? "$rootDir/team-props/git-hooks/mac" :
+                    "$rootDir/team-props/git-hooks/windows"
+    from(path) {
+        include("**/*.sh")
+        rename { String fileName ->
+            fileName.replace(".sh", "")
+        }
+    }
+    into("$rootDir/.git/hooks")
+    onlyIf { isLinuxMacOsOrWindows() }
+}
+
+tasks.register('installGitHooks', Exec) {
+    dependsOn copyGitHooks
+    description = "Installs the pre-commit git hooks from team-props/git-hooks."
+    group = "git hooks"
+    workingDir = rootDir
+    commandLine "chmod", "-R", "+x", ".git/hooks/"
+    doLast {
+        logger.info("Git hook installed successfully!")
+    }
+}
+
+afterEvaluate {
+    clean.dependsOn installGitHooks
+}
