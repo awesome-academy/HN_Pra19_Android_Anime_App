@@ -1,7 +1,7 @@
 ## Related Tickets
-- [#Task 78095: Content](https://edu-redmine.sun-asterisk.vn/issues/78095)
+- [#Task xxxxx: Content](https://edu-redmine.sun-asterisk.vn/issues/xxxxx)
 ## WHAT
-- 
+
 ## Evidence (Screenshot or Video)
 
 ## Review Checklist
