@@ -16,6 +16,6 @@ data class Anime(
     val duration: String,
     val season: String,
     val episodes: Int,
-    val genres: Genre,
-    val studios: Studio
+    val genres: List<Genre>,
+    val studios: List<Studio>
 )
