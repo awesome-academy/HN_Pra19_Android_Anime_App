@@ -3,7 +3,14 @@
     <style name="Base.Theme.Androidtemplate" parent="Theme.Material3.DayNight.NoActionBar">
         <!-- Customize your light theme here. -->
         <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+        <item name="android:statusBarColor">@color/white</item>
+        <item name="android:windowLightStatusBar">true</item>
     </style>
 
     <style name="Theme.Androidtemplate" parent="Base.Theme.Androidtemplate" />
+
+    <style name="CustomTabTextAppearance">
+        <item name="android:textSize">@dimen/sp_20</item>
+    </style>
+
 </resources>

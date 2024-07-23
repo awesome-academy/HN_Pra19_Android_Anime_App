@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/dp_60"
+    android:paddingTop="@dimen/dp_80"
+    android:paddingEnd="@dimen/dp_50"
+    android:paddingBottom="@dimen/dp_80">
+
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/arrowWrapper"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:cardBackgroundColor="@android:color/transparent"
+        app:cardCornerRadius="@dimen/dp_50"
+        app:cardElevation="@dimen/dp_0"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/primary"
+        app:strokeWidth="@dimen/dp_2">
+
+        <ImageView
+            android:id="@+id/imgSeemore"
+            android:layout_width="@dimen/dp_70"
+            android:layout_height="@dimen/dp_70"
+            android:contentDescription="@string/anime_poster"
+            android:padding="@dimen/dp_20"
+            android:scaleType="fitXY"
+            android:src="@drawable/right_arrow" />
+
+    </com.google.android.material.card.MaterialCardView>
+
+    <TextView
+        android:id="@+id/txtSeemore"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:text="@string/see_more"
+        android:textColor="@color/primary"
+        android:textSize="@dimen/sp_20"
+        app:layout_constraintTop_toBottomOf="@id/arrowWrapper" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

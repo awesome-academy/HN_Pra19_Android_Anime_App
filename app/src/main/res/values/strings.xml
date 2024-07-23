@@ -1,4 +1,14 @@
 <resources>
     <string name="app_name">Anime for you</string>
     <string name="kvrevr">kvrevr</string>
+    <string name="popular">Popular</string>
+    <string name="New">New</string>
+    <string name="top_rate">Top Rate</string>
+    <string name="top_rate1">TopRate</string>
+    <string name="favorite">Favorite</string>
+    <string name="anime_poster">anime poster</string>
+    <string name="anime_genre">Action, Comedy, Magic</string>
+    <string name="see_more">See more</string>
+    <string name="flag">Flag</string>
+    <string name="search">Search</string>
 </resources>
