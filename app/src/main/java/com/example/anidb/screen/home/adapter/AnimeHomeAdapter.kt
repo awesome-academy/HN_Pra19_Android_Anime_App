@@ -2,7 +2,6 @@ package com.example.anidb.screen.home.adapter
 
 import android.annotation.SuppressLint
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
@@ -16,12 +15,6 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
     var onItemClick: ((Anime) -> Unit)? = null
     var onSeeMoreClick: (() -> Unit)? = null
 
-    @SuppressLint("NotifyDataSetChanged")
-    fun setData(listAnime: List<Anime>) {
-        this.listAnime = listAnime
-        notifyDataSetChanged()
-    }
-
     override fun getItemViewType(position: Int): Int {
         return if (position == listAnime.size) {
             VIEW_TYPE_SEE_MORE
@@ -30,8 +23,8 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int)
-            : RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
+            RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_ITEM -> {
                 val binding =
@@ -50,7 +43,7 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
     }
 
     override fun getItemCount(): Int {
-        return listAnime.size + 1
+        return if (listAnime.isNotEmpty()) listAnime.size + 1 else 0
     }
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
@@ -67,8 +60,14 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
         }
     }
 
+    @SuppressLint("NotifyDataSetChanged")
+    fun setData(listAnime: List<Anime>) {
+        this.listAnime = listAnime
+        notifyDataSetChanged()
+    }
+
     inner class ItemViewHolder(private val binding: ItemAnimeBinding) :
-        RecyclerView.ViewHolder(binding.root){
+        RecyclerView.ViewHolder(binding.root) {
         fun onBind(anime: Anime) {
             binding.apply {
                 txtScore.text = anime.score.toString()
@@ -87,6 +86,7 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
     inner class SeeMoreViewHolder(private val binding: ItemSeemoreBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun onBind() {
+            // TODO()
         }
     }
 
