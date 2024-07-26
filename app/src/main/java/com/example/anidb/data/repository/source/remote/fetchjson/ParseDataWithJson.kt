@@ -7,7 +7,7 @@ import org.json.JSONObject
 fun <T> parseJsonToListData(
     jsonObject: JSONObject?,
     keyEntity: String,
-    parser: (JSONObject) -> T
+    parser: (JSONObject) -> T,
 ): List<T> {
     val data = mutableListOf<T>()
     try {
@@ -27,13 +27,14 @@ fun <T> parseJsonToListData(
 fun <T> parseJsonToDetailData(
     jsonObject: JSONObject?,
     keyEntity: String,
-    parser: (JSONObject) -> T
+    parser: (JSONObject) -> T,
 ): T? {
     var data: T? = null
     try {
-        data = jsonObject?.getJSONObject(keyEntity)?.let {
-            parser(it)
-        }
+        data =
+            jsonObject?.getJSONObject(keyEntity)?.let {
+                parser(it)
+            }
     } catch (e: JSONException) {
         Log.e("ParseDataWithJson", "parseJsonToData: ", e)
     }

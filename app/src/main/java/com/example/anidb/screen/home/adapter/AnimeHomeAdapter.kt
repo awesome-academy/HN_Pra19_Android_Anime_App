@@ -11,7 +11,6 @@ import com.example.anidb.databinding.ItemSeemoreBinding
 
 class AnimeHomeAdapter(private var listAnime: List<Anime>) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
     var onItemClick: ((Anime) -> Unit)? = null
     var onSeeMoreClick: (() -> Unit)? = null
 
@@ -23,8 +22,10 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
         }
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int):
-            RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(
+        parent: ViewGroup,
+        viewType: Int,
+    ): RecyclerView.ViewHolder {
         return when (viewType) {
             VIEW_TYPE_ITEM -> {
                 val binding =
@@ -46,7 +47,10 @@ class AnimeHomeAdapter(private var listAnime: List<Anime>) :
         return if (listAnime.isNotEmpty()) listAnime.size + 1 else 0
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
+    override fun onBindViewHolder(
+        holder: RecyclerView.ViewHolder,
+        position: Int,
+    ) {
         if (holder.itemViewType == VIEW_TYPE_ITEM) {
             (holder as ItemViewHolder).onBind(listAnime[position])
             holder.itemView.setOnClickListener {
