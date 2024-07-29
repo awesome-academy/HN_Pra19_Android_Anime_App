@@ -17,7 +17,7 @@ class GetJsonFromUrl<T>(
     private val urlString: String,
     private val keyEntity: String,
     private val listener: OnResultListener<T>,
-    private val parseJsonToData: (String, String) -> T
+    private val parseJsonToData: (String, String) -> T,
 ) {
     private val mExecutor: Executor = Executors.newSingleThreadExecutor()
     private val mHandler = Handler(Looper.getMainLooper())
@@ -71,7 +71,7 @@ class GetJsonFromUrl<T>(
             urlString: String,
             keyEntity: String,
             listener: OnResultListener<T>,
-            parseJsonToData: (String, String) -> T
+            parseJsonToData: (String, String) -> T,
         ): GetJsonFromUrl<T> {
             val key = "$urlString-$keyEntity-$listener"
             return instanceMap.getOrPut(key) {
