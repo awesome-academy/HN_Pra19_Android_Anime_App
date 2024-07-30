@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Anime cho bạn</string>
+    <string name="popular">Phổ biến</string>
+    <string name="New">Mới phát hành</string>
+    <string name="top_rate">Đánh giá cao</string>
+    <string name="top_rate1">Đánh giá cao</string>
+    <string name="favorite">Yêu thích</string>
+    <string name="anime_poster">ảnh bìa</string>
+    <string name="anime_genre">hành động</string>
+    <string name="see_more">Xem thêm</string>
+    <string name="flag">Cờ</string>
+    <string name="search">Tìm</string>
+    <string name="vietnam">Tiếng Việt</string>
+    <string name="english">Tiếng Anh</string>
+</resources>

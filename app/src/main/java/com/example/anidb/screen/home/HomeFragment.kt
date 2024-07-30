@@ -1,13 +1,21 @@
 package com.example.anidb.screen.home
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.widget.PopupMenu
 import androidx.core.widget.NestedScrollView
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.example.anidb.MainActivity
+import com.example.anidb.MainActivity.Companion.EN
+import com.example.anidb.MainActivity.Companion.PREFERENCE_NAME
+import com.example.anidb.MainActivity.Companion.PREF_KEY_LANGUAGE
+import com.example.anidb.MainActivity.Companion.VN
 import com.example.anidb.R
 import com.example.anidb.data.model.Anime
 import com.example.anidb.data.repository.AnimeRepository
@@ -19,6 +27,7 @@ import com.example.anidb.screen.detail.DetailFragment
 import com.example.anidb.screen.home.adapter.AnimeHomeAdapter
 import com.example.anidb.screen.home.presenter.HomeContract
 import com.example.anidb.screen.home.presenter.HomePresenter
+import com.example.anidb.utils.ext.replaceFragment
 import com.google.android.material.tabs.TabLayout
 
 class HomeFragment : Fragment(), HomeContract.View {
@@ -31,6 +40,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     private lateinit var favoriteAdapter: AnimeHomeAdapter
     private var isScroll = false
     private var isTabSelected = false
+    private var popupMenu: PopupMenu? = null
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -54,6 +64,12 @@ class HomeFragment : Fragment(), HomeContract.View {
         listenerSearchClick()
         listenerTabLayout()
         listenerScrollView()
+    }
+
+    override fun onDestroyView() {
+        popupMenu?.dismiss()
+        popupMenu = null
+        super.onDestroyView()
     }
 
     override fun onGetPopularAnimeSuccess(list: List<Anime>) {
@@ -81,7 +97,7 @@ class HomeFragment : Fragment(), HomeContract.View {
             HomePresenter(
                 AnimeRepository.getInstance(
                     AnimeRemoteDataSource.getInstance(),
-                    AnimeLocalDataSource.getInstance(),
+                    AnimeLocalDataSource.getInstance(requireContext()),
                 ),
             )
         homePresenter.setView(this)
@@ -140,22 +156,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun onItemClick(anime: Anime) {
-        val bundle =
-            Bundle().apply {
-                putSerializable("anime", anime)
-            }
-
-        // Tạo và hiển thị DetailFragment với dữ liệu
-        val detailFragment =
-            DetailFragment().apply {
-                arguments = bundle
-            }
-
-        // Chuyển đến DetailFragment+
-        parentFragmentManager.beginTransaction()
-            .replace(R.id.layoutContainer, detailFragment)
-            .addToBackStack(null)
-            .commit()
+        replaceFragment(R.id.layoutContainer, DetailFragment.newInstance(anime), true)
     }
 
     private fun onSeeMoreClick(type: Int) {
@@ -168,9 +169,31 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun listenerChangeLanguageClick() {
-        headerBinding.imgFlag.setOnClickListener {
-            // handle change language
+        val sharedPreferences =
+            activity?.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        sharedPreferences?.getString(PREF_KEY_LANGUAGE, EN)?.let {
+            when (it) {
+                VN -> headerBinding.imgFlag.setImageResource(R.drawable.vn_flag)
+                EN -> headerBinding.imgFlag.setImageResource(R.drawable.en_flag)
+            }
         }
+        headerBinding.imgFlag.setOnClickListener {
+            showPopupMenuLanguage(it)
+        }
+    }
+
+    private fun showPopupMenuLanguage(view: View) {
+        popupMenu = PopupMenu(requireContext(), view)
+        popupMenu?.menuInflater?.inflate(R.menu.menu_language, popupMenu?.menu)
+
+        popupMenu?.setOnMenuItemClickListener { menuItem: MenuItem ->
+            when (menuItem.itemId) {
+                R.id.vi -> (activity as MainActivity).setLocale(VN)
+                R.id.en -> (activity as MainActivity).setLocale(EN)
+            }
+            true
+        }
+        popupMenu?.show()
     }
 
     private fun listenerTabLayout() {

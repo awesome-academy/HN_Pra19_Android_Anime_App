@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">Anime for you</string>
-    <string name="kvrevr">kvrevr</string>
+    <string name="kvrevr" translatable="false">kvrevr</string>
     <string name="popular">Popular</string>
     <string name="New">New</string>
     <string name="top_rate">Top Rate</string>
@@ -9,66 +9,68 @@
     <string name="anime_poster">anime poster</string>
     <string name="anime_genre">Action, Comedy, Magic</string>
     <string name="see_more">See more</string>
-    <string name="see_less">See less</string>
+    <string name="see_less" translatable="false">See less</string>
     <string name="flag">Flag</string>
     <string name="search">Search</string>
-    <string name="relations">Anime Relations</string>
+    <string name="vietnam">Vietnamese</string>
+    <string name="english">English</string>
+    <string name="relations" translatable="false">Anime Relations</string>
 
 
-    <string name="back_button">back up</string>
-    <string name="heart_icon">favorite</string>
-    <string name="flag_icon">change language</string>
-    <string name="title">Anime name</string>
-    <string name="genre">Genre</string>
+    <string name="back_button" translatable="false">back up</string>
+    <string name="heart_icon" translatable="false">favorite</string>
+    <string name="flag_icon" translatable="false">change language</string>
+    <string name="title" translatable="false">Anime name</string>
+    <string name="genre" translatable="false">Genre</string>
 
     <!-- Episode Text -->
-    <string name="episode_text">Episode 26</string>
+    <string name="episode_text" translatable="false">Episode 26</string>
 
     <!-- Anime Title -->
-    <string name="anime_title">CHAINSAW MAN</string>
+    <string name="anime_title" translatable="false">CHAINSAW MAN</string>
 
     <!-- Labels and Values for GridLayout -->
-    <string name="status_label">Status:</string>
-    <string name="status_value">Finished Airing</string>
+    <string name="status_label" translatable="false">Status:</string>
+    <string name="status_value" translatable="false">Finished Airing</string>
 
-    <string name="members_label">Members:</string>
-    <string name="members_value">1,887,284</string>
+    <string name="members_label" translatable="false">Members:</string>
+    <string name="members_value" translatable="false">1,887,284</string>
 
-    <string name="score_label">Score:</string>
-    <string name="score_value">8.75</string>
+    <string name="score_label" translatable="false">Score:</string>
+    <string name="score_value" translatable="false">8.75</string>
 
-    <string name="rank_label">Rank:</string>
-    <string name="rank_value">44</string>
+    <string name="rank_label" translatable="false">Rank:</string>
+    <string name="rank_value" translatable="false">44</string>
 
-    <string name="popularity_label">Popularity:</string>
-    <string name="popularity_value">43</string>
+    <string name="popularity_label" translatable="false">Popularity:</string>
+    <string name="popularity_value" translatable="false">43</string>
 
-    <string name="favorites_label">Favorites:</string>
-    <string name="favorites_value">83,183</string>
+    <string name="favorites_label" translatable="false">Favorites:</string>
+    <string name="favorites_value" translatable="false">83,183</string>
 
-    <string name="duration_label">Duration:</string>
-    <string name="duration_value">24 min per ep</string>
+    <string name="duration_label" translatable="false">Duration:</string>
+    <string name="duration_value" translatable="false">24 min per ep</string>
 
-    <string name="season_label">Season:</string>
-    <string name="season_value">Spring</string>
+    <string name="season_label" translatable="false">Season:</string>
+    <string name="season_value" translatable="false">Spring</string>
 
-    <string name="episodes_label">Episodes:</string>
-    <string name="episodes_value">26</string>
+    <string name="episodes_label" translatable="false">Episodes:</string>
+    <string name="episodes_value" translatable="false">26</string>
 
-    <string name="genres_label">Genres:</string>
-    <string name="genres_value">Action</string>
+    <string name="genres_label" translatable="false">Genres:</string>
+    <string name="genres_value" translatable="false">Action</string>
 
-    <string name="airedTo_label">airedTo:</string>
-    <string name="airedTo_value">1999-04-24T00:00:00+00:00</string>
+    <string name="airedTo_label" translatable="false">airedTo:</string>
+    <string name="airedTo_value" translatable="false">1999-04-24T00:00:00+00:00</string>
 
-    <string name="airedFrom_label">airedFrom:</string>
-    <string name="airedFrom_value">1998-04-03T00:00:00+00:00</string>
+    <string name="airedFrom_label" translatable="false">airedFrom:</string>
+    <string name="airedFrom_value" translatable="false">1998-04-03T00:00:00+00:00</string>
 
-    <string name="studios_label">Studios:</string>
-    <string name="studios_value">Sunrise</string>
+    <string name="studios_label" translatable="false">Studios:</string>
+    <string name="studios_value" translatable="false">Sunrise</string>
 
 
-    <string name="description_text">The story is set in a world where Devils (悪魔, Akuma) are born from human fears. Devils are usually dangerous and malevolent, their power proportional to the fear they invoke. See more</string>
+    <string name="description_text" translatable="false">The story is set in a world where Devils (悪魔, Akuma) are born from human fears. Devils are usually dangerous and malevolent, their power proportional to the fear they invoke. See more</string>
 
 
 </resources>

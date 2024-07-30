@@ -85,14 +85,6 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
         ).getAnimeData()
     }
 
-    override fun getAnimeFavorite(
-        limit: Int,
-        page: Int,
-        listener: OnResultListener<List<Anime>>,
-    ) {
-        // TODO()
-    }
-
     override fun getAnimeDetail(
         id: Int,
         listener: OnResultListener<Anime>,

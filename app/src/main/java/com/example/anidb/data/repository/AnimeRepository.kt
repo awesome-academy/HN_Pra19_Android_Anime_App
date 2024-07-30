@@ -33,14 +33,6 @@ class AnimeRepository(
         remote.getAnimeTopRate(limit, page, listener)
     }
 
-    override fun getAnimeFavorite(
-        limit: Int,
-        page: Int,
-        listener: OnResultListener<List<Anime>>,
-    ) {
-        remote.getAnimeFavorite(limit, page, listener)
-    }
-
     override fun getAnimeDetail(
         id: Int,
         listener: OnResultListener<Anime>,
@@ -53,6 +45,35 @@ class AnimeRepository(
         listener: OnResultListener<List<AnimeRelations>>,
     ) {
         remote.getAnimeRelations(id, listener)
+    }
+
+    override fun addAnimeFavorite(
+        anime: Anime,
+        listener: OnResultListener<Long>,
+    ) {
+        local.addAnimeFavorite(anime, listener)
+    }
+
+    override fun getAnimeFavorite(
+        limit: Int,
+        page: Int,
+        listener: OnResultListener<List<Anime>>,
+    ) {
+        local.getAnimeFavorite(limit, page, listener)
+    }
+
+    override fun deleteAnimeFavorite(
+        id: Int,
+        listener: OnResultListener<Boolean>,
+    ) {
+        local.deleteAnimeFavorite(id, listener)
+    }
+
+    override fun isAnimeFavoriteExists(
+        id: Int,
+        listener: OnResultListener<Boolean>,
+    ) {
+        local.isAnimeFavoriteExists(id, listener)
     }
 
     companion object {
