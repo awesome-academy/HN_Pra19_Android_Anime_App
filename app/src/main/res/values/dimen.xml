@@ -20,9 +20,34 @@
     <dimen name="dp_90">90dp</dimen>
     <dimen name="dp_160">160dp</dimen>
     <dimen name="dp_180">180dp</dimen>
+    <dimen name="dp_200">200dp</dimen>
     <dimen name="dp_320">320dp</dimen>
 
+    <dimen name="sp_14">14sp</dimen>
     <dimen name="sp_18">18sp</dimen>
     <dimen name="sp_20">20sp</dimen>
+
+
+    <dimen name="back_button_size">42dp</dimen>
+    <dimen name="toolbar_icon_size">38dp</dimen>
+    <dimen name="toolbar_title_size">20sp</dimen>
+    <dimen name="toolbar_layout_margin_start">6dp</dimen>
+    <dimen name="toolbar_layout_margin_end">10dp</dimen>
+    <dimen name="toolbar_elevation">6dp</dimen>
+
+
+
+    <dimen name="p_01">0.1</dimen>
+    <dimen name="p_02">0.2</dimen>
+    <dimen name="p_03">0.3</dimen>
+    <dimen name="p_04">0.4</dimen>
+    <dimen name="p_05">0.5</dimen>
+
+    <dimen name="sn_1">1dp</dimen>
+    <dimen name="sn_2">2dp</dimen>
+    <dimen name="sn_3">3dp</dimen>
+    <dimen name="sn_4">4dp</dimen>
+    <dimen name="sn_5">5dp</dimen>
+
 
 </resources>
