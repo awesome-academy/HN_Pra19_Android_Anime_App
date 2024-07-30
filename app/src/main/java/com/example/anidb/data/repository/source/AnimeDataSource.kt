@@ -1,6 +1,7 @@
 package com.example.anidb.data.repository.source
 
 import com.example.anidb.data.model.Anime
+import com.example.anidb.data.model.AnimeRelations
 import com.example.anidb.data.repository.source.remote.OnResultListener
 
 interface AnimeDataSource {
@@ -34,6 +35,11 @@ interface AnimeDataSource {
         fun getAnimeDetail(
             id: Int,
             listener: OnResultListener<Anime>,
+        )
+
+        fun getAnimeRelations(
+            id: Int,
+            listener: OnResultListener<List<AnimeRelations>>,
         )
     }
 }

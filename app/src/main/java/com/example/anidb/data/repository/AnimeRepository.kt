@@ -1,6 +1,7 @@
 package com.example.anidb.data.repository
 
 import com.example.anidb.data.model.Anime
+import com.example.anidb.data.model.AnimeRelations
 import com.example.anidb.data.repository.source.AnimeDataSource
 import com.example.anidb.data.repository.source.remote.OnResultListener
 
@@ -45,6 +46,13 @@ class AnimeRepository(
         listener: OnResultListener<Anime>,
     ) {
         remote.getAnimeDetail(id, listener)
+    }
+
+    override fun getAnimeRelations(
+        id: Int,
+        listener: OnResultListener<List<AnimeRelations>>,
+    ) {
+        remote.getAnimeRelations(id, listener)
     }
 
     companion object {

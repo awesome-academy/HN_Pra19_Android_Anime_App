@@ -1,6 +1,7 @@
 package com.example.anidb.data.repository.source.remote
 
 import com.example.anidb.data.model.Anime
+import com.example.anidb.data.model.AnimeRelations
 import com.example.anidb.data.repository.source.AnimeDataSource
 import com.example.anidb.data.repository.source.remote.fetchjson.GetJsonFromUrl
 import com.example.anidb.data.repository.source.remote.fetchjson.ParseJson
@@ -104,6 +105,33 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
                 parseJsonToAnime(responseJson, keyEntity)
             },
         ).getAnimeData()
+    }
+
+    override fun getAnimeRelations(
+        id: Int,
+        listener: OnResultListener<List<AnimeRelations>>,
+    ) {
+        GetJsonFromUrl.getInstance(
+            urlString = BASE_URL_DETAIL + id + "/relations",
+            keyEntity = ANIME,
+            listener = listener,
+            parseJsonToData = { responseJson, keyEntity ->
+                parseJsonToListAnimeRelations(responseJson, keyEntity)
+            },
+        ).getAnimeData()
+    }
+
+    private fun parseJsonToListAnimeRelations(
+        responseJson: String,
+        keyEntity: String,
+    ): List<AnimeRelations> {
+        return try {
+            parseJsonToListData(JSONObject(responseJson), keyEntity) {
+                ParseJson().animeRelationsParseJson(it)
+            }
+        } catch (e: Exception) {
+            listOf()
+        }
     }
 
     private fun parseJsonToListAnime(
