@@ -11,7 +11,10 @@ class HomePresenter(private val animeRepository: AnimeRepository) : HomeContract
         this.hView = view
     }
 
-    override fun getPopularAnime(limit: Int, page: Int) {
+    override fun getPopularAnime(
+        limit: Int,
+        page: Int,
+    ) {
         animeRepository.getAnimePopular(
             limit,
             page,
@@ -23,10 +26,14 @@ class HomePresenter(private val animeRepository: AnimeRepository) : HomeContract
                 override fun onError(exception: Exception?) {
                     hView?.onError(exception.toString())
                 }
-            })
+            },
+        )
     }
 
-    override fun getNewAnime(limit: Int, page: Int) {
+    override fun getNewAnime(
+        limit: Int,
+        page: Int,
+    ) {
         animeRepository.getAnimeNew(
             limit,
             page,
@@ -38,10 +45,14 @@ class HomePresenter(private val animeRepository: AnimeRepository) : HomeContract
                 override fun onError(exception: Exception?) {
                     hView?.onError(exception.toString())
                 }
-            })
+            },
+        )
     }
 
-    override fun getTopRateAnime(limit: Int, page: Int) {
+    override fun getTopRateAnime(
+        limit: Int,
+        page: Int,
+    ) {
         animeRepository.getAnimeTopRate(
             limit,
             page,
@@ -53,10 +64,14 @@ class HomePresenter(private val animeRepository: AnimeRepository) : HomeContract
                 override fun onError(exception: Exception?) {
                     hView?.onError(exception.toString())
                 }
-            })
+            },
+        )
     }
 
-    override fun getFavoriteAnime(limit: Int, page: Int) {
+    override fun getFavoriteAnime(
+        limit: Int,
+        page: Int,
+    ) {
         animeRepository.getAnimeFavorite(
             limit,
             page,
@@ -68,6 +83,7 @@ class HomePresenter(private val animeRepository: AnimeRepository) : HomeContract
                 override fun onError(exception: Exception?) {
                     hView?.onError(exception.toString())
                 }
-            })
+            },
+        )
     }
 }

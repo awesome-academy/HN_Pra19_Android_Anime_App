@@ -23,10 +23,11 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
     override fun getAnimePopular(
         limit: Int,
         page: Int,
-        listener: OnResultListener<List<Anime>>
+        listener: OnResultListener<List<Anime>>,
     ) {
         GetJsonFromUrl.getInstance(
-            urlString = BASE_URL_SEARCH +
+            urlString =
+                BASE_URL_SEARCH +
                     BASE_POPULAR +
                     BASE_MIN_SCORE +
                     BASE_LIMIT + limit +
@@ -36,17 +37,18 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
             listener = listener,
             parseJsonToData = { responseJson, keyEntity ->
                 parseJsonToListAnime(responseJson, keyEntity)
-            }
+            },
         ).getAnimeData()
     }
 
     override fun getAnimeNew(
         limit: Int,
         page: Int,
-        listener: OnResultListener<List<Anime>>
+        listener: OnResultListener<List<Anime>>,
     ) {
         GetJsonFromUrl.getInstance(
-            urlString = BASE_URL_SEARCH +
+            urlString =
+                BASE_URL_SEARCH +
                     BASE_NEW +
                     BASE_SORT_DESC +
                     BASE_MIN_SCORE +
@@ -57,17 +59,18 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
             listener = listener,
             parseJsonToData = { responseJson, keyEntity ->
                 parseJsonToListAnime(responseJson, keyEntity)
-            }
+            },
         ).getAnimeData()
     }
 
     override fun getAnimeTopRate(
         limit: Int,
         page: Int,
-        listener: OnResultListener<List<Anime>>
+        listener: OnResultListener<List<Anime>>,
     ) {
         GetJsonFromUrl.getInstance(
-            urlString = BASE_URL_SEARCH +
+            urlString =
+                BASE_URL_SEARCH +
                     BASE_TOP_RATE +
                     BASE_SORT_DESC +
                     BASE_LIMIT + limit +
@@ -77,21 +80,21 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
             listener = listener,
             parseJsonToData = { responseJson, keyEntity ->
                 parseJsonToListAnime(responseJson, keyEntity)
-            }
+            },
         ).getAnimeData()
     }
 
     override fun getAnimeFavorite(
         limit: Int,
         page: Int,
-        listener: OnResultListener<List<Anime>>
+        listener: OnResultListener<List<Anime>>,
     ) {
         // TODO()
     }
 
     override fun getAnimeDetail(
         id: Int,
-        listener: OnResultListener<Anime>
+        listener: OnResultListener<Anime>,
     ) {
         GetJsonFromUrl.getInstance(
             urlString = BASE_URL_DETAIL + id,
@@ -99,11 +102,14 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
             listener = listener,
             parseJsonToData = { responseJson, keyEntity ->
                 parseJsonToAnime(responseJson, keyEntity)
-            }
+            },
         ).getAnimeData()
     }
 
-    private fun parseJsonToListAnime(responseJson: String, keyEntity: String): List<Anime> {
+    private fun parseJsonToListAnime(
+        responseJson: String,
+        keyEntity: String,
+    ): List<Anime> {
         return try {
             parseJsonToListData(JSONObject(responseJson), keyEntity) {
                 ParseJson().animeParseJson(it)
@@ -113,7 +119,10 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
         }
     }
 
-    private fun parseJsonToAnime(responseJson: String, keyEntity: String): Anime {
+    private fun parseJsonToAnime(
+        responseJson: String,
+        keyEntity: String,
+    ): Anime {
         return try {
             parseJsonToDetailData(JSONObject(responseJson), keyEntity) {
                 ParseJson().animeParseJson(it)
@@ -126,8 +135,9 @@ class AnimeRemoteDataSource : AnimeDataSource.Remote {
     companion object {
         private var instance: AnimeRemoteDataSource? = null
 
-        fun getInstance() = synchronized(this) {
-            instance ?: AnimeRemoteDataSource().also { instance = it }
-        }
+        fun getInstance() =
+            synchronized(this) {
+                instance ?: AnimeRemoteDataSource().also { instance = it }
+            }
     }
 }

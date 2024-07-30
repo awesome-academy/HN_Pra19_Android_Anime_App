@@ -19,5 +19,5 @@ data class Anime(
     var season: String = "",
     var episodes: Int = 0,
     var genres: List<Genre> = emptyList(),
-    var studios: List<Studio> = emptyList()
+    var studios: List<Studio> = emptyList(),
 ) : Serializable

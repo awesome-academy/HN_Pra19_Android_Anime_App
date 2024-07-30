@@ -34,7 +34,7 @@ class HomeFragment : Fragment(), HomeContract.View {
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
-        savedInstanceState: Bundle?
+        savedInstanceState: Bundle?,
     ): View? {
         binding = FragmentHomeBinding.inflate(inflater, container, false)
         headerBinding = binding.layoutHeader
@@ -42,7 +42,10 @@ class HomeFragment : Fragment(), HomeContract.View {
         return binding.root
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?,
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         initData()
@@ -73,12 +76,13 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun initData() {
-        homePresenter = HomePresenter(
-            AnimeRepository.getInstance(
-                AnimeRemoteDataSource.getInstance(),
-                AnimeLocalDataSource.getInstance()
+        homePresenter =
+            HomePresenter(
+                AnimeRepository.getInstance(
+                    AnimeRemoteDataSource.getInstance(),
+                    AnimeLocalDataSource.getInstance(),
+                ),
             )
-        )
         homePresenter.setView(this)
         homePresenter.getPopularAnime(ANIME_LIMIT, FIRST_PAGE)
         homePresenter.getNewAnime(ANIME_LIMIT, FIRST_PAGE)
@@ -161,36 +165,39 @@ class HomeFragment : Fragment(), HomeContract.View {
             tabLayout.addTab(tabLayout.newTab().setText(R.string.favorite))
         }
 
-        binding.tabLayout.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
-            override fun onTabSelected(tab: TabLayout.Tab) {
-                if (!isScroll) {
-                    isTabSelected = true
-                    val position = tab.position
-                    val targetView: View? = when (position) {
-                        POPULAR_INDEX -> binding.txtPopular
-                        NEW_INDEX -> binding.txtNew
-                        RATE_INDEX -> binding.txtRate
-                        FAVORITE_INDEX -> binding.txtFavorite
-                        else -> null
-                    }
+        binding.tabLayout.addOnTabSelectedListener(
+            object : TabLayout.OnTabSelectedListener {
+                override fun onTabSelected(tab: TabLayout.Tab) {
+                    if (!isScroll) {
+                        isTabSelected = true
+                        val position = tab.position
+                        val targetView: View? =
+                            when (position) {
+                                POPULAR_INDEX -> binding.txtPopular
+                                NEW_INDEX -> binding.txtNew
+                                RATE_INDEX -> binding.txtRate
+                                FAVORITE_INDEX -> binding.txtFavorite
+                                else -> null
+                            }
 
-                    targetView?.let {
-                        binding.scrollView.post {
-                            binding.scrollView.smoothScrollTo(0, it.top)
-                            isTabSelected = false
+                        targetView?.let {
+                            binding.scrollView.post {
+                                binding.scrollView.smoothScrollTo(0, it.top)
+                                isTabSelected = false
+                            }
                         }
                     }
                 }
-            }
 
-            override fun onTabUnselected(tab: TabLayout.Tab) {
-                // TODO()
-            }
+                override fun onTabUnselected(tab: TabLayout.Tab) {
+                    // TODO()
+                }
 
-            override fun onTabReselected(tab: TabLayout.Tab) {
-                // TODO()
-            }
-        })
+                override fun onTabReselected(tab: TabLayout.Tab) {
+                    // TODO()
+                }
+            },
+        )
     }
 
     private fun listenerScrollView() {
@@ -198,12 +205,13 @@ class HomeFragment : Fragment(), HomeContract.View {
             scrollView.setOnScrollChangeListener { _: NestedScrollView, _: Int, scrollY: Int, _: Int, _: Int ->
                 if (!isTabSelected) {
                     isScroll = true
-                    val position = when {
-                        scrollY >= txtFavorite.top - LAST_ITEM_DISTANCE -> FAVORITE_INDEX
-                        scrollY >= txtRate.top -> RATE_INDEX
-                        scrollY >= txtNew.top -> NEW_INDEX
-                        else -> POPULAR_INDEX
-                    }
+                    val position =
+                        when {
+                            scrollY >= txtFavorite.top - LAST_ITEM_DISTANCE -> FAVORITE_INDEX
+                            scrollY >= txtRate.top -> RATE_INDEX
+                            scrollY >= txtNew.top -> NEW_INDEX
+                            else -> POPULAR_INDEX
+                        }
                     if (tabLayout.selectedTabPosition != position) {
                         tabLayout.getTabAt(position)?.select()
                     }

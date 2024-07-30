@@ -29,37 +29,31 @@ import org.json.JSONArray
 import org.json.JSONObject
 
 class ParseJson {
-    fun animeParseJson(jsonObject: JSONObject) = Anime().apply {
-        jsonObject.let {
-            id = it.getInt(ID)
-            title = it.getString(TITLE)
-            image = it.getJSONObject(IMAGE)
-                .getJSONObject(IMAGE_TYPE)
-                .getString(IMAGE_SIZE)
-            description = it.getString(DESCRIPTION)
-            status = it.getString(STATUS)
-            airedTo = it.getJSONObject(AIRED)
-                .getString(AIRED_TO)
-            airedFrom = it.getJSONObject(AIRED)
-                .getString(AIRED_FROM)
-            members = if (!it.isNull(MEMBERS))
-                it.getInt(MEMBERS) else 0
-            score = if (!it.isNull(SCORE))
-                it.getDouble(SCORE) else 0.0
-            rank = if (!it.isNull(RANK))
-                it.getInt(RANK) else 0
-            popularity = if (!it.isNull(POPULARITY))
-                it.getInt(POPULARITY) else 0
-            favorites = if (!it.isNull(FAVORITES))
-                it.getInt(FAVORITES) else 0
-            duration = it.getString(DURATION)
-            season = it.getString(SEASON)
-            episodes = if (!it.isNull(EPISODES))
-                it.getInt(EPISODES) else 0
-            genres = getGenresFromJsonArray(it.getJSONArray(GENRES))
-            studios = getStudiosFromJsonArray(it.getJSONArray(STUDIOS))
+    fun animeParseJson(jsonObject: JSONObject) =
+        Anime().apply {
+            jsonObject.let {
+                id = it.getInt(ID)
+                title = it.getString(TITLE)
+                image =
+                    it.getJSONObject(IMAGE)
+                        .getJSONObject(IMAGE_TYPE)
+                        .getString(IMAGE_SIZE)
+                description = it.getString(DESCRIPTION)
+                status = it.getString(STATUS)
+                airedTo = it.getJSONObject(AIRED).getString(AIRED_TO)
+                airedFrom = it.getJSONObject(AIRED).getString(AIRED_FROM)
+                members = it.optInt(MEMBERS, 0)
+                score = it.optDouble(SCORE, 0.0)
+                rank = it.optInt(RANK, 0)
+                popularity = it.optInt(POPULARITY, 0)
+                favorites = it.optInt(FAVORITES, 0)
+                duration = it.getString(DURATION)
+                season = it.getString(SEASON)
+                episodes = it.optInt(EPISODES, 0)
+                genres = getGenresFromJsonArray(it.getJSONArray(GENRES))
+                studios = getStudiosFromJsonArray(it.getJSONArray(STUDIOS))
+            }
         }
-    }
 
     private fun getStudiosFromJsonArray(jsonArray: JSONArray): List<Studio> {
         return try {
