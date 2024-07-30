@@ -9,6 +9,66 @@
     <string name="anime_poster">anime poster</string>
     <string name="anime_genre">Action, Comedy, Magic</string>
     <string name="see_more">See more</string>
+    <string name="see_less">See less</string>
     <string name="flag">Flag</string>
     <string name="search">Search</string>
+    <string name="relations">Anime Relations</string>
+
+
+    <string name="back_button">back up</string>
+    <string name="heart_icon">favorite</string>
+    <string name="flag_icon">change language</string>
+    <string name="title">Anime name</string>
+    <string name="genre">Genre</string>
+
+    <!-- Episode Text -->
+    <string name="episode_text">Episode 26</string>
+
+    <!-- Anime Title -->
+    <string name="anime_title">CHAINSAW MAN</string>
+
+    <!-- Labels and Values for GridLayout -->
+    <string name="status_label">Status:</string>
+    <string name="status_value">Finished Airing</string>
+
+    <string name="members_label">Members:</string>
+    <string name="members_value">1,887,284</string>
+
+    <string name="score_label">Score:</string>
+    <string name="score_value">8.75</string>
+
+    <string name="rank_label">Rank:</string>
+    <string name="rank_value">44</string>
+
+    <string name="popularity_label">Popularity:</string>
+    <string name="popularity_value">43</string>
+
+    <string name="favorites_label">Favorites:</string>
+    <string name="favorites_value">83,183</string>
+
+    <string name="duration_label">Duration:</string>
+    <string name="duration_value">24 min per ep</string>
+
+    <string name="season_label">Season:</string>
+    <string name="season_value">Spring</string>
+
+    <string name="episodes_label">Episodes:</string>
+    <string name="episodes_value">26</string>
+
+    <string name="genres_label">Genres:</string>
+    <string name="genres_value">Action</string>
+
+    <string name="airedTo_label">airedTo:</string>
+    <string name="airedTo_value">1999-04-24T00:00:00+00:00</string>
+
+    <string name="airedFrom_label">airedFrom:</string>
+    <string name="airedFrom_value">1998-04-03T00:00:00+00:00</string>
+
+    <string name="studios_label">Studios:</string>
+    <string name="studios_value">Sunrise</string>
+
+
+    <string name="description_text">The story is set in a world where Devils (悪魔, Akuma) are born from human fears. Devils are usually dangerous and malevolent, their power proportional to the fear they invoke. See more</string>
+
+
 </resources>
