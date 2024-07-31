@@ -1,6 +1,8 @@
 package com.example.anidb.data.repository.source.remote.fetchjson
 
 import com.example.anidb.data.model.Anime
+import com.example.anidb.data.model.AnimeRelations
+import com.example.anidb.data.model.Entry
 import com.example.anidb.data.model.Genre
 import com.example.anidb.data.model.Studio
 import com.example.anidb.utils.entry.AIRED
@@ -54,6 +56,22 @@ class ParseJson {
                 studios = getStudiosFromJsonArray(it.getJSONArray(STUDIOS))
             }
         }
+
+    fun animeRelationsParseJson(jsonObject: JSONObject) =
+        AnimeRelations().apply {
+            jsonObject.let {
+                relation = it.getString("relation")
+                entry = getEntryFromJsonArray(it.getJSONArray("entry"))
+            }
+        }
+
+    private fun getEntryFromJsonArray(jsonArray: JSONArray): List<Entry> {
+        return try {
+            Gson().fromJson(jsonArray.toString(), Array<Entry>::class.java).toList()
+        } catch (e: JsonSyntaxException) {
+            emptyList()
+        }
+    }
 
     private fun getStudiosFromJsonArray(jsonArray: JSONArray): List<Studio> {
         return try {

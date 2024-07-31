@@ -15,6 +15,7 @@ import com.example.anidb.data.repository.source.local.AnimeLocalDataSource
 import com.example.anidb.data.repository.source.remote.AnimeRemoteDataSource
 import com.example.anidb.databinding.FragmentHomeBinding
 import com.example.anidb.databinding.HeaderHomeBinding
+import com.example.anidb.screen.detail.DetailFragment
 import com.example.anidb.screen.home.adapter.AnimeHomeAdapter
 import com.example.anidb.screen.home.presenter.HomeContract
 import com.example.anidb.screen.home.presenter.HomePresenter
@@ -139,7 +140,22 @@ class HomeFragment : Fragment(), HomeContract.View {
     }
 
     private fun onItemClick(anime: Anime) {
-        Toast.makeText(activity, anime.title, Toast.LENGTH_SHORT).show()
+        val bundle =
+            Bundle().apply {
+                putSerializable("anime", anime)
+            }
+
+        // Tạo và hiển thị DetailFragment với dữ liệu
+        val detailFragment =
+            DetailFragment().apply {
+                arguments = bundle
+            }
+
+        // Chuyển đến DetailFragment+
+        parentFragmentManager.beginTransaction()
+            .replace(R.id.layoutContainer, detailFragment)
+            .addToBackStack(null)
+            .commit()
     }
 
     private fun onSeeMoreClick(type: Int) {
