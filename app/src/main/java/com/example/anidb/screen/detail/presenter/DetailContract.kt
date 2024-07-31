@@ -8,6 +8,12 @@ interface DetailContract {
         fun getRelationsAnime(id: Int)
 
         fun getDetailAnime(id: Int)
+
+        fun addAnimeFavorite(anime: Anime)
+
+        fun deleteAnimeFavorite(id: Int)
+
+        fun isAnimeFavorite(id: Int)
     }
 
     interface View {
@@ -18,5 +24,11 @@ interface DetailContract {
         fun onGetDetailAnimeSuccess(anime: Anime)
 
         fun onAnimeDetailsFetched(data: List<Anime>)
+
+        fun onAddAnimeFavoriteSuccess(data: Long)
+
+        fun onDeleteAnimeFavoriteSuccess(data: Boolean)
+
+        fun onIsAnimeFavoriteSuccess(isFavorite: Boolean)
     }
 }

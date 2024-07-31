@@ -5,7 +5,28 @@ import com.example.anidb.data.model.AnimeRelations
 import com.example.anidb.data.repository.source.remote.OnResultListener
 
 interface AnimeDataSource {
-    interface Local
+    interface Local {
+        fun addAnimeFavorite(
+            anime: Anime,
+            listener: OnResultListener<Long>,
+        )
+
+        fun getAnimeFavorite(
+            limit: Int,
+            page: Int,
+            listener: OnResultListener<List<Anime>>,
+        )
+
+        fun deleteAnimeFavorite(
+            id: Int,
+            listener: OnResultListener<Boolean>,
+        )
+
+        fun isAnimeFavoriteExists(
+            id: Int,
+            listener: OnResultListener<Boolean>,
+        )
+    }
 
     interface Remote {
         fun getAnimePopular(
@@ -21,12 +42,6 @@ interface AnimeDataSource {
         )
 
         fun getAnimeTopRate(
-            limit: Int,
-            page: Int,
-            listener: OnResultListener<List<Anime>>,
-        )
-
-        fun getAnimeFavorite(
             limit: Int,
             page: Int,
             listener: OnResultListener<List<Anime>>,

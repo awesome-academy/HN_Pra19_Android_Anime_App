@@ -25,6 +25,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
     private lateinit var animeRelateAdapter: AnimeRelateAdapter
     private var isHeartFilled = false
     private var isExpanded = false
+    private var navbarBinding: NavbarBinding? = null
 
     override fun inflateViewBinding(inflater: LayoutInflater): FragmentDetailBinding {
         return FragmentDetailBinding.inflate(inflater)
@@ -59,8 +60,9 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
         }
 
         // Gán binding cho navbar
-        val navbarBinding = NavbarBinding.bind(viewBinding.root.findViewById(R.id.navbar))
-        val detailAnimeBinding = DetailAnimeBinding.bind(viewBinding.root.findViewById(R.id.detail_anime))
+        navbarBinding = NavbarBinding.bind(viewBinding.root.findViewById(R.id.navbar))
+        val detailAnimeBinding =
+            DetailAnimeBinding.bind(viewBinding.root.findViewById(R.id.detail_anime))
         val seeMoreListener =
             View.OnClickListener {
                 if (isExpanded) {
@@ -81,18 +83,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
         detailAnimeBinding.seeMore.setOnClickListener(seeMoreListener)
         detailAnimeBinding.imgDown.setOnClickListener(seeMoreListener)
 
-        navbarBinding.backButton.setOnClickListener {
+        navbarBinding?.backButton?.setOnClickListener {
             requireActivity().onBackPressed()
-        }
-        navbarBinding.heartIcon.setOnClickListener {
-            if (isHeartFilled) {
-                // Chuyển về hình trái tim rỗng
-                navbarBinding.heartIcon.setImageResource(R.drawable.ic_empty_heart)
-            } else {
-                // Chuyển về hình trái tim đầy
-                navbarBinding.heartIcon.setImageResource(R.drawable.ic_heart)
-            }
-            isHeartFilled = !isHeartFilled // Đảo ngược trạng thái
         }
     }
 
@@ -103,15 +95,16 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
             DetailPresenter(
                 AnimeRepository.getInstance(
                     AnimeRemoteDataSource.getInstance(),
-                    AnimeLocalDataSource.getInstance(),
+                    AnimeLocalDataSource.getInstance(requireContext()),
                 ),
             )
         presenter.setView(this)
 
         anime?.let {
+            presenter.isAnimeFavorite(anime.id)
             presenter.getRelationsAnime(anime.id)
-
-            val detailAnimeBinding = DetailAnimeBinding.bind(viewBinding.root.findViewById(R.id.detail_anime))
+            val detailAnimeBinding =
+                DetailAnimeBinding.bind(viewBinding.root.findViewById(R.id.detail_anime))
 
             detailAnimeBinding?.apply {
                 animeTitleTextView.text = anime.title
@@ -132,6 +125,14 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
                 Glide.with(requireContext())
                     .load(anime.image)
                     .into(animeImageView)
+
+                navbarBinding?.heartIcon?.setOnClickListener {
+                    if (isHeartFilled) {
+                        presenter.deleteAnimeFavorite(anime.id)
+                    } else {
+                        presenter.addAnimeFavorite(anime)
+                    }
+                }
             }
         }
     }
@@ -150,6 +151,27 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
 
     override fun onAnimeDetailsFetched(animeDetails: List<Anime>) {
         animeRelateAdapter.updateData(animeDetails)
+    }
+
+    override fun onAddAnimeFavoriteSuccess(data: Long) {
+        isHeartFilled = true
+        navbarBinding?.heartIcon?.setImageResource(R.drawable.ic_heart)
+    }
+
+    override fun onDeleteAnimeFavoriteSuccess(data: Boolean) {
+        if (data) {
+            isHeartFilled = false
+            navbarBinding?.heartIcon?.setImageResource(R.drawable.ic_empty_heart)
+        }
+    }
+
+    override fun onIsAnimeFavoriteSuccess(isFavorite: Boolean) {
+        isHeartFilled = isFavorite
+        if (isFavorite) {
+            navbarBinding?.heartIcon?.setImageResource(R.drawable.ic_heart)
+        } else {
+            navbarBinding?.heartIcon?.setImageResource(R.drawable.ic_empty_heart)
+        }
     }
 
     companion object {

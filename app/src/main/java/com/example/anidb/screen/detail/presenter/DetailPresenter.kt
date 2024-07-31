@@ -101,4 +101,49 @@ class DetailPresenter(private val animeRepository: AnimeRepository) : DetailCont
             },
         )
     }
+
+    override fun addAnimeFavorite(anime: Anime) {
+        animeRepository.addAnimeFavorite(
+            anime,
+            object : OnResultListener<Long> {
+                override fun onSuccess(data: Long) {
+                    hView?.onAddAnimeFavoriteSuccess(data)
+                }
+
+                override fun onError(exception: Exception?) {
+                    hView?.onError(exception.toString())
+                }
+            },
+        )
+    }
+
+    override fun deleteAnimeFavorite(id: Int) {
+        animeRepository.deleteAnimeFavorite(
+            id,
+            object : OnResultListener<Boolean> {
+                override fun onSuccess(data: Boolean) {
+                    hView?.onDeleteAnimeFavoriteSuccess(data)
+                }
+
+                override fun onError(exception: Exception?) {
+                    hView?.onError(exception.toString())
+                }
+            },
+        )
+    }
+
+    override fun isAnimeFavorite(id: Int) {
+        animeRepository.isAnimeFavoriteExists(
+            id,
+            object : OnResultListener<Boolean> {
+                override fun onSuccess(data: Boolean) {
+                    hView?.onIsAnimeFavoriteSuccess(data)
+                }
+
+                override fun onError(exception: Exception?) {
+                    hView?.onError(exception.toString())
+                }
+            },
+        )
+    }
 }
