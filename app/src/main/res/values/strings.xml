@@ -1,4 +1,4 @@
-<resources>
+<resources xmlns:tools="http://schemas.android.com/tools">
     <string name="app_name">Anime for you</string>
     <string name="kvrevr" translatable="false">kvrevr</string>
     <string name="popular">Popular</string>
@@ -14,8 +14,9 @@
     <string name="search">Search</string>
     <string name="vietnam">Vietnamese</string>
     <string name="english">English</string>
-    <string name="relations" translatable="false">Anime Relations</string>
-
+    <string name="relations" translatable="true">Anime Relations</string>
+    <string name="detail_anime" >Detail Anime</string>
+    <string name="favorite_anime" translatable="false">Favorite Anime</string>
 
     <string name="back_button" translatable="false">back up</string>
     <string name="heart_icon" translatable="false">favorite</string>
@@ -30,43 +31,43 @@
     <string name="anime_title" translatable="false">CHAINSAW MAN</string>
 
     <!-- Labels and Values for GridLayout -->
-    <string name="status_label" translatable="false">Status:</string>
+    <string name="status_label" translatable="true">Status:</string>
     <string name="status_value" translatable="false">Finished Airing</string>
 
-    <string name="members_label" translatable="false">Members:</string>
+    <string name="members_label" translatable="true">Members:</string>
     <string name="members_value" translatable="false">1,887,284</string>
 
-    <string name="score_label" translatable="false">Score:</string>
+    <string name="score_label" translatable="true">Score:</string>
     <string name="score_value" translatable="false">8.75</string>
 
-    <string name="rank_label" translatable="false">Rank:</string>
+    <string name="rank_label" translatable="true">Rank:</string>
     <string name="rank_value" translatable="false">44</string>
 
-    <string name="popularity_label" translatable="false">Popularity:</string>
+    <string name="popularity_label" translatable="true">Popularity:</string>
     <string name="popularity_value" translatable="false">43</string>
 
-    <string name="favorites_label" translatable="false">Favorites:</string>
+    <string name="favorites_label" translatable="true">Favorites:</string>
     <string name="favorites_value" translatable="false">83,183</string>
 
-    <string name="duration_label" translatable="false">Duration:</string>
+    <string name="duration_label" translatable="true">Duration:</string>
     <string name="duration_value" translatable="false">24 min per ep</string>
 
-    <string name="season_label" translatable="false">Season:</string>
+    <string name="season_label" translatable="true">Season:</string>
     <string name="season_value" translatable="false">Spring</string>
 
-    <string name="episodes_label" translatable="false">Episodes:</string>
+    <string name="episodes_label" translatable="true">Episodes:</string>
     <string name="episodes_value" translatable="false">26</string>
 
-    <string name="genres_label" translatable="false">Genres:</string>
+    <string name="genres_label" translatable="true">Genres:</string>
     <string name="genres_value" translatable="false">Action</string>
 
-    <string name="airedTo_label" translatable="false">airedTo:</string>
+    <string name="airedTo_label" translatable="true">airedTo:</string>
     <string name="airedTo_value" translatable="false">1999-04-24T00:00:00+00:00</string>
 
-    <string name="airedFrom_label" translatable="false">airedFrom:</string>
+    <string name="airedFrom_label" translatable="true">airedFrom:</string>
     <string name="airedFrom_value" translatable="false">1998-04-03T00:00:00+00:00</string>
 
-    <string name="studios_label" translatable="false">Studios:</string>
+    <string name="studios_label" translatable="true">Studios:</string>
     <string name="studios_value" translatable="false">Sunrise</string>
 
 

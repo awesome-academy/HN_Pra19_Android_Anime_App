@@ -1,11 +1,19 @@
 package com.example.anidb.screen.detail
 
+import android.content.Context
 import android.os.Bundle
 import android.text.TextUtils
 import android.view.LayoutInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.widget.PopupMenu
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.bumptech.glide.Glide
+import com.example.anidb.MainActivity
+import com.example.anidb.MainActivity.Companion.EN
+import com.example.anidb.MainActivity.Companion.PREFERENCE_NAME
+import com.example.anidb.MainActivity.Companion.PREF_KEY_LANGUAGE
+import com.example.anidb.MainActivity.Companion.VN
 import com.example.anidb.R
 import com.example.anidb.data.model.Anime
 import com.example.anidb.data.model.AnimeRelations
@@ -26,6 +34,7 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
     private var isHeartFilled = false
     private var isExpanded = false
     private var navbarBinding: NavbarBinding? = null
+    private var popupMenu: PopupMenu? = null
 
     override fun inflateViewBinding(inflater: LayoutInflater): FragmentDetailBinding {
         return FragmentDetailBinding.inflate(inflater)
@@ -86,6 +95,8 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
         navbarBinding?.backButton?.setOnClickListener {
             requireActivity().onBackPressed()
         }
+        navbarBinding?.toolbarTitle?.text = getString(R.string.detail_anime)
+        listenerChangeLanguageClick()
     }
 
     override fun initData() {
@@ -135,6 +146,35 @@ class DetailFragment : BaseFragment<FragmentDetailBinding>(), DetailContract.Vie
                 }
             }
         }
+    }
+
+    private fun listenerChangeLanguageClick() {
+        val sharedPreferences = activity?.getSharedPreferences(PREFERENCE_NAME, Context.MODE_PRIVATE)
+        sharedPreferences?.getString(PREF_KEY_LANGUAGE, EN)?.let {
+            when (it) {
+                VN -> navbarBinding?.flagIcon?.setImageResource(R.drawable.vn_flag)
+                EN -> navbarBinding?.flagIcon?.setImageResource(R.drawable.en_flag)
+                else -> {}
+            }
+        }
+        navbarBinding?.flagIcon?.setOnClickListener {
+            showPopupMenuLanguage(it)
+        }
+    }
+
+    // Hàm hiển thị PopupMenu để chọn ngôn ngữ
+    private fun showPopupMenuLanguage(view: View) {
+        popupMenu = PopupMenu(requireContext(), view)
+        popupMenu?.menuInflater?.inflate(R.menu.menu_language, popupMenu?.menu)
+
+        popupMenu?.setOnMenuItemClickListener { menuItem: MenuItem ->
+            when (menuItem.itemId) {
+                R.id.vi -> (activity as MainActivity).setLocale(VN)
+                R.id.en -> (activity as MainActivity).setLocale(EN)
+            }
+            true
+        }
+        popupMenu?.show()
     }
 
     override fun onError(message: String) {
