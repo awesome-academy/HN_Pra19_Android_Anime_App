@@ -13,4 +13,19 @@
     <string name="search">Tìm</string>
     <string name="vietnam">Tiếng Việt</string>
     <string name="english">Tiếng Anh</string>
+    <string name="relations">Anime liên quan</string>
+    <string name="detail_anime" >Chi tiết Anime</string>
+    <string name="status_label">Trạng thái:</string>
+    <string name="members_label">Thành viên:</string>
+    <string name="score_label">Điểm:</string>
+    <string name="rank_label">Xếp hạng:</string>
+    <string name="popularity_label">Phổ biến:</string>
+    <string name="favorites_label">Yêu thích:</string>
+    <string name="duration_label">Thời lượng:</string>
+    <string name="season_label">Mùa:</string>
+    <string name="episodes_label">Tập:</string>
+    <string name="genres_label">Thể loại:</string>
+    <string name="airedTo_label">Kết thúc:</string>
+    <string name="airedFrom_label">Bắt đầu:</string>
+    <string name="studios_label">Studio:</string>
 </resources>
